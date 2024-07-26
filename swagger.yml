@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  description: This is a minimal specification and should be used as a starting point
+  version: 1.0.0
+  title: Hello World
+tags:
+  - name: I'm a Resource
+    description: Use this section to group Paths relative to the same resource
+paths:
+  /:
+    get:
+      tags:
+        - I'm a Resource
+      summary: Returns a text 'Hello World' text
+      description: ""
+      operationId: helloWorld
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                status: string
+                message: string
+  /user/:id:
+    get:
+      tags:
+        - I'm a Resource
+      summary: Returns a user
+      description: ""
+      operationId: getUser
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /users:
+    get:
+      tags:
+        - I'm a Resource
+      summary: Returns a list of users
+      description: ""
+      operationId: getUsers
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name: string
+        username: string
+        email: string
+        avatar: string
+        sexType: string
+        password: string
+        birthdate: string
+        registeredAt: string
+      xml:
+        name: User
