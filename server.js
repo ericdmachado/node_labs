@@ -4,9 +4,17 @@ import _filter from 'lodash.filter';
 import { users } from './users.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from './swagger_output.json' with { type: "json" };
+import cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors({
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}));
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
