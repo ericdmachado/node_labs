@@ -20,4 +20,15 @@ const docs = {
   ]
 };
 
+/*
+name: string
+username: string
+email: string
+avatar: string
+sexType: string
+password: string
+birthdate: string
+registeredAt: string
+*/
+
 swaggerAutogen(outputFile, endpointsFiles, docs);
