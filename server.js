@@ -3,7 +3,7 @@ import express from 'express';
 import _filter from 'lodash.filter';
 import { users } from './users.js';
 import swaggerUi from 'swagger-ui-express';
-import swaggerFile from './swagger_output.json' assert { type: "json" };
+import swaggerFile from './swagger_output.json' with { type: "json" };
 
 const app = express();
 const port = process.env.PORT || 3000;
