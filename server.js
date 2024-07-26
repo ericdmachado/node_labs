@@ -14,23 +14,25 @@ app.get('/users/:id', (req, res) => {
 
 app.get('/users', (req, res) => {
   const filter = req.query.filter;
-  if(!filter) return res.json({status: 'error', message: 'Need to pass a filter'})
-  const filters = filter?.split('|');
+  if(filter) {
+    const filters = filter?.split('|');
+    const queries = filters
+      .map(filter=>{
+        const [key, value] = filter?.split(':');
+        if(key && value) return {key, value};
+        return null;
+      })
+      .filter(f=>f)
+      .reduce((a, b)=>{
+        a[b.key] = decodeURIComponent(b.value);
+        return a;
+      }, {});
 
-  const queries = filters
-    .map(filter=>{
-      const [key, value] = filter?.split(':');
-      if(key && value) return {key, value};
-      return null;
-    })
-    .filter(f=>f)
-    .reduce((a, b)=>{
-      a[b.key] = decodeURIComponent(b.value);
-      return a;
-    }, {});
-
-  const filtered = _filter(users, queries);
-  res.json(filtered);
+    const filtered = _filter(users, queries);
+    res.json(filtered);
+  }else{
+    res.json(users);
+  }
 });
 
 app.listen(port, () => {
