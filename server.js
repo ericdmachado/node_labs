@@ -7,14 +7,12 @@ const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => res.json({status: 'success', message: 'Only test lab'}));
 
-app.get('/users', (req, res) => res.json(users));
-
 app.get('/users/:id', (req, res) => {
   const {id} = req.params;
   res.json(users.find(user=>user._id === id));
 });
 
-app.get('/user', (req, res) => {
+app.get('/users', (req, res) => {
   const filter = req.query.filter;
   if(!filter) return res.json({status: 'error', message: 'Need to pass a filter'})
   const filters = filter?.split('|');
