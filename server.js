@@ -5,6 +5,8 @@ import { users } from './users.js';
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.get('/', (req, res) => res.json({status: 'success', message: 'Only test lab'}));
+
 app.get('/users', (req, res) => res.json(users));
 
 app.get('/users/:id', (req, res) => {
