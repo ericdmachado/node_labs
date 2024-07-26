@@ -1,12 +1,11 @@
+import 'dotenv/config';
 import express from 'express';
 import _filter from 'lodash.filter';
 import { users } from './users.js';
 const app = express();
-const port = process.env.NODE_ENV || 3000;
+const port = process.env.PORT || 3000;
 
-app.get('/users', (req, res) => {
-  res.json(users);
-});
+app.get('/users', (req, res) => res.json(users));
 
 app.get('/users/:id', (req, res) => {
   const {id} = req.params;
