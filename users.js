@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 
 export const createRandomUser = () => {
   const person = faker.person;
+  
 
   return {
     _id: faker.string.uuid(),
